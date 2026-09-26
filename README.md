@@ -50,8 +50,8 @@ Passing a pointer allows a function to modify the original variable, avoid copyi
     the | Symbol is a bitwise OR operator
     the ^ symbol is a bitwise XOR operator
     the ~ symbol is for bitwise complement
-    << is a bitwise shift to the left
-    >> is a bitwise shift to the right
+    "<<" is a bitwise shift to the left
+    ">>" is a bitwise shift to the right
 
     To create a bit mask,
     
