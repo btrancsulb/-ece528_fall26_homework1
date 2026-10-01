@@ -72,3 +72,50 @@ Passing a pointer allows a function to modify the original variable, avoid copyi
     to check a specific bit in an integer variable,
 
     if (value & mask)
+
+12. PxSEL0 and PxSEL1 select the function assigned to a GPIO pin.
+   to select p1.0 and p1.7,
+
+   P1SEL0 &= ~(BIT0 | BIT7);
+   P1SEL1 &= ~(BIT0 | BIT7);
+
+13. void P1_1_and_P1_4_Init(void)
+{
+    const unsigned char MASK = 0x12;   // BIT1 | BIT4
+
+    P1SEL0 &= ~MASK;
+    P1SEL1 &= ~MASK;
+
+    P1DIR &= ~MASK;    // Inputs
+    P1REN |= MASK;     // Enable resistors
+    P1OUT |= MASK;     // Pull-ups
+}
+
+14. void Buttons_Init(void)
+{
+    const unsigned char P3_MASK = 0x42;  // BIT1 | BIT6
+    const unsigned char P5_MASK = 0x11;  // BIT0 | BIT4
+
+    P3SEL0 &= ~P3_MASK;
+    P3SEL1 &= ~P3_MASK;
+    P3DIR &= ~P3_MASK;
+    P3REN |= P3_MASK;
+    P3OUT &= ~P3_MASK;    // Pull-downs
+
+    P5SEL0 &= ~P5_MASK;
+    P5SEL1 &= ~P5_MASK;
+    P5DIR &= ~P5_MASK;
+    P5REN |= P5_MASK;
+    P5OUT &= ~P5_MASK;    // Pull-downs
+}
+
+15. void LEDs_Init(void)
+{
+    const unsigned char LED_MASK = 0xFF;
+
+    P7SEL0 &= ~LED_MASK;
+    P7SEL1 &= ~LED_MASK;
+
+    P7DIR |= LED_MASK;    // Outputs
+    P7OUT &= ~LED_MASK;   // Initialize to zero
+}
